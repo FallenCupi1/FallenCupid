@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FallenCupid.co</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+        }
+        a {
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #111;
+            border-bottom: 1px solid #222;
+        }
+        header .logo {
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+        nav a {
+            margin-left: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #ff0044;
+        }
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background: url('images/hero-image.jpg') center/cover no-repeat;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        .hero a.button {
+            padding: 15px 40px;
+            background-color: #ff0044;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .hero a.button:hover {
+            background-color: #ff3366;
+        }
+        /* Sections */
+        section {
+            padding: 80px 50px;
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #111;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+        }
+        .footer a {
+            margin: 0 10px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">FallenCupid.co</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Dark. Thrifted. Unapologetic.</h1>
+        <p>Curated clothing for the bold and fearless 🖤</p>
+        <a href="#shop" class="button">Shop Now</a>
+    </section>
+
+    <!-- Products Section -->
+    <section id="shop">
+        <h2>Featured Products</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="images/product1.jpg" alt="Product 1">
+                <h3>Product Name</h3>
+                <p>$49.99</p>
+                <a href="#">Buy Now</a>
+            </div>
+            <div class="product-card">
+                <img src="images/product2.jpg" alt="Product 2">
+                <h3>Product Name</h3>
+                <p>$59.99</p>
+                <a href="#">Buy Now</a>
+            </div>
+            <!-- Add more products here -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About FallenCupid</h2>
+        <p style="max-width: 800px; margin: 0 auto; text-align:center;">
+            FallenCupid.co is a curated clothing brand rising from the void. We find, revive, and style bold, unapologetic threads for those who dare to stand out.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p style="text-align:center;">Email: contact@fallencupid.co</p>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 FallenCupid.co</p>
+        <a href="#">Instagram</a> | <a href="#">TikTok</a> | <a href="#">Twitter</a>
+    </div>
+
+</body>
+</html>

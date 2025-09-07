@@ -42,12 +42,11 @@
     .main {
         padding: 50px;
     }
-    h1.section-title {
-        font-size: 42px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+    .tagline {
+        font-size: 22px;
+        font-weight: 700;
         margin-bottom: 40px;
-        font-weight: 900;
+        line-height: 1.4;
     }
     .items {
         display: grid;
@@ -175,7 +174,11 @@
 </header>
 
 <div class="main" id="shop">
-    <h1 class="section-title">FEARLESS CLOTHING</h1>
+    <div class="tagline">
+        Dark. Thrifted. Unapologetic.<br>
+        Curated clothing for the bold and fearless 🖤
+    </div>
+
     <div class="items">
         <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://via.placeholder.com/300x300.png?text=1,https://via.placeholder.com/300x300.png?text=2">
             <img src="https://via.placeholder.com/300x300.png?text=1" alt="FEARLESS T-Shirt">
@@ -274,12 +277,13 @@ window.onclick = function(event) {
 function checkPassword() {
     const input = document.getElementById('passwordInput').value;
     if(input === "CLOTHING101") {
+        thankYou.style.color = "limegreen";
         thankYou.textContent = "Thank you for supporting me!";
         const currentItem = modal.dataset.currentItem;
         currentItem.querySelector('.sold-overlay').style.display = "flex";
     } else {
-        thankYou.textContent = "Incorrect password.";
         thankYou.style.color = "red";
+        thankYou.textContent = "Incorrect password.";
     }
 }
 </script>

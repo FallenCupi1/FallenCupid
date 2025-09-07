@@ -97,10 +97,6 @@
         border-radius: 12px;
         display: flex;
     }
-    .item.sold {
-        pointer-events: none;
-        opacity: 0.6;
-    }
     .socials {
         margin-top: 60px;
         font-size: 16px;
@@ -180,7 +176,7 @@
 <div class="main" id="shop">
     <div class="tagline">
         Dark. Thrifted. Unapologetic.<br>
-        Curated clothing for the bold and fearless 🖤
+        Curated clothing for the PEOPLE 🖤
     </div>
 
     <div class="items">
@@ -237,8 +233,10 @@ let currentImages = [];
 let currentIndex = 0;
 
 document.querySelectorAll('.item').forEach(item => {
+    item.querySelector('.sold-overlay').style.display = "none"; // hide sold initially
+    
     item.addEventListener('click', () => {
-        if (item.classList.contains("sold")) return; // only block sold items
+        if (item.classList.contains("sold")) return; // prevent click if sold
 
         currentImages = item.getAttribute('data-images').split(',');
         currentIndex = 0;
@@ -266,4 +264,10 @@ nextBtn.onclick = () => {
     }
 };
 
-document.querySelector('.close').onclick = function()
+document.querySelector('.close').onclick = function() {
+    modal.style.display = "none";
+    thankYou.textContent = "";
+    document.getElementById('passwordInput').value = "";
+};
+
+window.onclick

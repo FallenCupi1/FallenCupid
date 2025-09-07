@@ -180,7 +180,7 @@
 <div class="main" id="shop">
     <div class="tagline">
         Dark. Thrifted. Unapologetic.<br>
-        Curated clothing for the PEOPLE 🖤
+        Curated clothing for the bold and fearless 🖤
     </div>
 
     <div class="items">
@@ -238,6 +238,8 @@ let currentIndex = 0;
 
 document.querySelectorAll('.item').forEach(item => {
     item.addEventListener('click', () => {
+        if (item.classList.contains("sold")) return; // only block sold items
+
         currentImages = item.getAttribute('data-images').split(',');
         currentIndex = 0;
         modalImg.src = currentImages[currentIndex];
@@ -253,4 +255,15 @@ document.querySelectorAll('.item').forEach(item => {
 prevBtn.onclick = () => {
     if(currentImages.length > 1){
         currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-        modal
+        modalImg.src = currentImages[currentIndex];
+    }
+};
+
+nextBtn.onclick = () => {
+    if(currentImages.length > 1){
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+    }
+};
+
+document.querySelector('.close').onclick = function()

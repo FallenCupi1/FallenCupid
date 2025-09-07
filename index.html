@@ -6,7 +6,6 @@
     <title>FallenCupid.co</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -20,7 +19,6 @@
         h1, h2, h3 {
             font-weight: 700;
         }
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -36,11 +34,9 @@
         nav a {
             margin-left: 20px;
         }
-        /* Main Content */
         main {
             padding: 50px;
         }
-        /* Socials */
         .socials {
             margin-top: 20px;
         }
@@ -48,7 +44,6 @@
             margin-right: 15px;
             font-weight: 700;
         }
-        /* Shop Section */
         .shop {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -60,6 +55,7 @@
             padding: 15px;
             border-radius: 12px;
             text-align: center;
+            cursor: pointer;
             position: relative;
         }
         .item img {
@@ -71,16 +67,6 @@
         }
         .item p {
             margin: 5px 0;
-        }
-        .item button {
-            margin-top: 10px;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #f5f5f5;
-            color: #111;
-            cursor: pointer;
-            font-weight: 700;
         }
         .sold-overlay {
             position: absolute;
@@ -98,6 +84,71 @@
             border-radius: 12px;
             display: none;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            padding-top: 50px;
+        }
+        .modal-content {
+            background-color: #111;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            position: relative;
+            text-align: center;
+        }
+        .close {
+            color: #fff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-content img {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        .modal-content input {
+            padding: 8px;
+            width: 80%;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .message-btn {
+            background-color: #f5f5f5;
+            color: #111;
+        }
+        .password-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .thank-you {
+            color: #28a745;
+            font-size: 20px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -114,44 +165,92 @@
     <h1>Welcome to FallenCupid</h1>
     <p>Your style, your vibe. Check out our latest clothing items below!</p>
 
-    <!-- Shop Section -->
     <section class="shop" id="shop">
-        <div class="item">
+        <div class="item" data-name="Cool T-Shirt" data-price="$25" data-images="https://via.placeholder.com/300x300.png?text=T-Shirt+1">
             <div class="sold-overlay">SOLD</div>
             <img src="https://via.placeholder.com/300x300.png?text=T-Shirt+1" alt="T-Shirt 1">
             <h3>Cool T-Shirt</h3>
             <p>Size: M | $25</p>
-            <button onclick="window.open('https://www.instagram.com/fallencupid.co/', '_blank')">Message on Instagram</button>
         </div>
 
-        <div class="item">
+        <div class="item" data-name="Street Hoodie" data-price="$40" data-images="https://via.placeholder.com/300x300.png?text=T-Shirt+2">
             <div class="sold-overlay">SOLD</div>
             <img src="https://via.placeholder.com/300x300.png?text=T-Shirt+2" alt="T-Shirt 2">
             <h3>Street Hoodie</h3>
             <p>Size: L | $40</p>
-            <button onclick="window.open('https://www.instagram.com/fallencupid.co/', '_blank')">Message on Instagram</button>
         </div>
-
-        <!-- Add more items here -->
     </section>
 
-    <!-- Socials -->
     <section class="socials" id="socials">
         <h2>Follow Me</h2>
         <a href="https://www.instagram.com/fallencupid.co/" target="_blank">Instagram</a>
-        <!-- Add more socials if you want -->
     </section>
 </main>
 
+<!-- Modal -->
+<div id="itemModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-img" src="" alt="Item">
+        <h3 id="modal-name"></h3>
+        <p id="modal-price"></p>
+        <button class="message-btn" onclick="window.open('https://www.instagram.com/fallencupid.co/', '_blank')">Message on Instagram</button>
+        <div>
+            <input type="text" id="passwordInput" placeholder="Enter password after purchase">
+            <button class="password-btn" onclick="checkPassword()">Submit</button>
+            <div class="thank-you" id="thankYou"></div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Example JS to mark item as sold
-    document.querySelectorAll('.item button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const item = e.target.closest('.item');
-            const overlay = item.querySelector('.sold-overlay');
-            overlay.style.display = 'flex'; // Show "SOLD" overlay after messaging
-        });
+const modal = document.getElementById("itemModal");
+const modalImg = document.getElementById("modal-img");
+const modalName = document.getElementById("modal-name");
+const modalPrice = document.getElementById("modal-price");
+const thankYou = document.getElementById("thankYou");
+
+document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', () => {
+        const imgSrc = item.getAttribute('data-images');
+        const name = item.getAttribute('data-name');
+        const price = item.getAttribute('data-price');
+
+        modalImg.src = imgSrc;
+        modalName.textContent = name;
+        modalPrice.textContent = price;
+        modal.style.display = "block";
+
+        // Store reference to the clicked item
+        modal.dataset.currentItem = item;
     });
+});
+
+document.querySelector('.close').onclick = function() {
+    modal.style.display = "none";
+    thankYou.textContent = "";
+    document.getElementById('passwordInput').value = "";
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        thankYou.textContent = "";
+        document.getElementById('passwordInput').value = "";
+    }
+};
+
+function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if(input === "CLOTHING101") {
+        thankYou.textContent = "Thank you for supporting me!";
+        const currentItem = modal.dataset.currentItem;
+        currentItem.querySelector('.sold-overlay').style.display = "flex";
+    } else {
+        thankYou.textContent = "Incorrect password.";
+        thankYou.style.color = "red";
+    }
+}
 </script>
 
 </body>

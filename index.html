@@ -97,6 +97,10 @@
         border-radius: 12px;
         display: flex;
     }
+    .item.sold {
+        pointer-events: none;
+        opacity: 0.6;
+    }
     .socials {
         margin-top: 60px;
         font-size: 16px;
@@ -182,7 +186,7 @@
     <div class="items">
         <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png">
             <img src="https://via.placeholder.com/300x300.png?text=1" alt="FEARLESS T-Shirt">
-            <h3> T-Shirt</h3>
+            <h3>T-Shirt</h3>
             <p>$25</p>
             <div class="sold-overlay"></div>
         </div>
@@ -234,6 +238,8 @@ let currentIndex = 0;
 
 document.querySelectorAll('.item').forEach(item => {
     item.addEventListener('click', () => {
+        if(item.classList.contains("sold")) return; // Prevent opening sold items
+
         currentImages = item.getAttribute('data-images').split(',');
         currentIndex = 0;
         modalImg.src = currentImages[currentIndex];
@@ -279,17 +285,13 @@ function checkPassword() {
     if(input === "CLOTHING101") {
         thankYou.style.color = "limegreen";
         thankYou.textContent = "Thank you for supporting me!";
+        
         const currentItem = modal.dataset.currentItem;
         currentItem.querySelector('.sold-overlay').style.display = "flex";
-    } else {
-        thankYou.style.color = "red";
-        thankYou.textContent = "Incorrect password.";
-    }
-}
-</script>
-</body>
-</html>
-
-
-
-
+        currentItem.classList.add("sold"); // Mark as sold and disable clicks
+        
+        setTimeout(() => {
+            modal.style.display = "none";
+            document.getElementById('passwordInput').value = "";
+            thankYou.textContent = "";
+        }, 1500

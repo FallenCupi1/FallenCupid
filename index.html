@@ -6,218 +6,146 @@
 <title>FallenCupid.co</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-        background-color: #0a0a0a;
-        color: #f5f5f5;
-    }
-    a {
-        color: #f5f5f5;
-        text-decoration: none;
-    }
-    h1, h2, h3 {
-        font-weight: 700;
-    }
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 50px;
-        background-color: #111;
-        border-bottom: 1px solid #222;
-    }
-    header .logo {
-        font-size: 32px;
-        letter-spacing: 3px;
-        font-weight: 900;
-    }
-    nav a {
-        margin-left: 25px;
-        font-weight: bold;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .main {
-        padding: 50px;
-    }
-    .tagline {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 40px;
-        line-height: 1.4;
-    }
-    .items {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 25px;
-    }
-    .item {
-        background-color: #111;
-        padding: 15px;
-        border: 2px solid #333;
-        border-radius: 12px;
-        cursor: pointer;
-        position: relative;
-        transition: 0.3s;
-    }
-    .item:hover {
-        border-color: #f5f5f5;
-    }
-    .item img {
-        width: 100%;
-        border-radius: 12px;
-        margin-bottom: 10px;
-    }
-    .item h3 {
-        font-size: 18px;
-        font-weight: 900;
-        margin: 5px 0;
-    }
-    .item p {
-        font-size: 14px;
-        font-weight: bold;
-        color: #aaa;
-        margin: 0;
-    }
-    .sold-overlay {
-        display: none;
-        position: absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        background-color: rgba(255,0,0,0.7);
-        color: #fff;
-        font-size: 22px;
-        font-weight: bold;
-        justify-content: center;
-        align-items: center;
-        border-radius: 12px;
-        display: flex;
-    }
-    .socials {
-        margin-top: 60px;
-        font-size: 16px;
-    }
-    /* Modal */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left:0;
-        top:0;
-        width:100%;
-        height:100%;
-        overflow:auto;
-        background-color: rgba(0,0,0,0.95);
-        justify-content: center;
-        align-items: center;
-    }
-    .modal-content {
-        background-color: #111;
-        padding: 25px;
-        border-radius: 12px;
-        position: relative;
-        max-width: 550px;
-        width: 90%;
-        text-align: center;
-    }
-    .modal-content img {
-        max-width: 100%;
-        border-radius: 12px;
-        margin-bottom: 15px;
-    }
-    .close {
-        color: #fff;
-        position: absolute;
-        top:10px;
-        right:15px;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .modal-content input {
-        padding: 8px;
-        margin-top: 10px;
-        width: 70%;
-        border-radius: 5px;
-        border:none;
-        font-size: 14px;
-    }
-    .modal-content button {
-        padding: 8px 12px;
-        margin-top:10px;
-        border:none;
-        border-radius:5px;
-        cursor:pointer;
-        background-color:#f5f5f5;
-        color:#0a0a0a;
-        font-weight:bold;
-        font-size: 14px;
-    }
-    .thank-you {
-        margin-top:12px;
-        font-weight:bold;
-        color: limegreen;
-    }
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0a0a0a;
+    color: #f5f5f5;
+}
+a { color: #f5f5f5; text-decoration: none; }
+h1,h2,h3 { font-weight: 700; }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #111;
+    border-bottom: 1px solid #222;
+}
+header .logo { font-size: 32px; letter-spacing: 3px; font-weight: 900; }
+nav a { margin-left: 25px; font-weight: bold; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+.main { padding: 50px; }
+.tagline { font-size: 22px; font-weight: 700; margin-bottom: 40px; line-height: 1.4; }
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+.item {
+    background-color: #111;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+.item:hover { border-color: #f5f5f5; }
+.item img { width: 100%; border-radius: 12px; margin-bottom: 10px; }
+.item h3 { font-size: 18px; font-weight: 900; margin: 5px 0; }
+.item p { font-size: 14px; font-weight: bold; color: #aaa; margin: 0; }
+.sold-overlay {
+    display: none;
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background-color: rgba(255,0,0,0.7);
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    display: flex;
+}
+.socials { margin-top: 60px; font-size: 16px; }
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left:0; top:0;
+    width:100%; height:100%;
+    overflow:auto;
+    background-color: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #111;
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+    max-width: 550px;
+    width: 90%;
+    text-align: center;
+}
+.modal-content img { max-width: 100%; border-radius: 12px; margin-bottom: 15px; }
+.close { color: #fff; position: absolute; top:10px; right:15px; font-size: 28px; font-weight: bold; cursor: pointer; }
+.modal-content input {
+    padding: 8px; margin-top: 10px; width: 70%; border-radius: 5px; border:none; font-size: 14px;
+}
+.modal-content button {
+    padding: 8px 12px; margin-top:10px; border:none; border-radius:5px;
+    cursor:pointer; background-color:#f5f5f5; color:#0a0a0a; font-weight:bold; font-size: 14px;
+}
+.thank-you { margin-top:12px; font-weight:bold; color: limegreen; }
 </style>
 </head>
 <body>
 <header>
-    <div class="logo">FallenCupid.co</div>
-    <nav>
-        <a href="#shop">Shop</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<div class="logo">FallenCupid.co</div>
+<nav>
+    <a href="#shop">Shop</a>
+    <a href="#contact">Contact</a>
+</nav>
 </header>
 
 <div class="main" id="shop">
-    <div class="tagline">
-        Dark. Thrifted. Unapologetic.<br>
-        Curated clothing for the PEOPLE 🖤
+<div class="tagline">
+    Dark. Thrifted. Unapologetic.<br>
+    Curated clothing for the PEOPLE 🖤
+</div>
+
+<div class="items">
+    <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png">
+        <img src="https://via.placeholder.com/300x300.png?text=1" alt="FEARLESS T-Shirt">
+        <h3>T-Shirt</h3>
+        <p>$25</p>
+        <div class="sold-overlay">SOLD</div>
     </div>
 
-    <div class="items">
-        <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png">
-            <img src="https://via.placeholder.com/300x300.png?text=1" alt="FEARLESS T-Shirt">
-            <h3>T-Shirt</h3>
-            <p>$25</p>
-            <div class="sold-overlay">SOLD</div>
-        </div>
-
-        <div class="item" data-name="Bold Hoodie" data-price="$40" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png">
-            <img src="https://via.placeholder.com/300x300.png?text=A" alt="Bold Hoodie">
-            <h3>Hoodie</h3>
-            <p>$40</p>
-            <div class="sold-overlay">SOLD</div>
-        </div>
+    <div class="item" data-name="Bold Hoodie" data-price="$40" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png">
+        <img src="https://via.placeholder.com/300x300.png?text=A" alt="Bold Hoodie">
+        <h3>Hoodie</h3>
+        <p>$40</p>
+        <div class="sold-overlay">SOLD</div>
     </div>
+</div>
 
-    <div class="socials" id="contact">
-        <a href="https://www.instagram.com/fallencupid.co/" target="_blank">Follow on Instagram</a>
-    </div>
+<div class="socials" id="contact">
+    <a href="https://www.instagram.com/fallencupid.co/" target="_blank">Follow on Instagram</a>
+</div>
 </div>
 
 <!-- Modal -->
 <div id="itemModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div style="position:relative;">
-            <img id="modal-img" src="" alt="Item">
-            <button id="prevBtn" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); font-size:24px; background:none; border:none; color:white; cursor:pointer;">&#10094;</button>
-            <button id="nextBtn" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); font-size:24px; background:none; border:none; color:white; cursor:pointer;">&#10095;</button>
-        </div>
-        <h3 id="modal-name"></h3>
-        <p id="modal-price"></p>
-        <button class="message-btn" onclick="window.open('https://www.instagram.com/fallencupid.co/', '_blank')">Message on Instagram</button>
-        <div>
-            <input type="text" id="passwordInput" placeholder="Enter password after purchase">
-            <button class="password-btn" onclick="checkPassword()">Submit</button>
-            <div class="thank-you" id="thankYou"></div>
-        </div>
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <div style="position:relative;">
+        <img id="modal-img" src="" alt="Item">
+        <button id="prevBtn" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); font-size:24px; background:none; border:none; color:white; cursor:pointer;">&#10094;</button>
+        <button id="nextBtn" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); font-size:24px; background:none; border:none; color:white; cursor:pointer;">&#10095;</button>
     </div>
+    <h3 id="modal-name"></h3>
+    <p id="modal-price"></p>
+    <button class="message-btn" onclick="window.open('https://www.instagram.com/fallencupid.co/', '_blank')">Message on Instagram</button>
+    <div>
+        <input type="text" id="passwordInput" placeholder="Enter password after purchase">
+        <button class="password-btn" onclick="checkPassword()">Submit</button>
+        <div class="thank-you" id="thankYou"></div>
+    </div>
+</div>
 </div>
 
 <script>
@@ -228,23 +156,17 @@ const modalPrice = document.getElementById("modal-price");
 const thankYou = document.getElementById("thankYou");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-
 let currentImages = [];
 let currentIndex = 0;
 
 document.querySelectorAll('.item').forEach(item => {
-    item.querySelector('.sold-overlay').style.display = "none"; // hide sold initially
-    
     item.addEventListener('click', () => {
-        if (item.classList.contains("sold")) return; // prevent click if sold
-
+        if(item.classList.contains('sold')) return; // can't click sold items
         currentImages = item.getAttribute('data-images').split(',');
         currentIndex = 0;
         modalImg.src = currentImages[currentIndex];
-
         modalName.textContent = item.getAttribute('data-name');
         modalPrice.textContent = item.getAttribute('data-price');
-
         modal.style.display = "flex";
         modal.dataset.currentItem = item;
     });
@@ -255,14 +177,14 @@ prevBtn.onclick = () => {
         currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
         modalImg.src = currentImages[currentIndex];
     }
-};
+}
 
 nextBtn.onclick = () => {
     if(currentImages.length > 1){
         currentIndex = (currentIndex + 1) % currentImages.length;
         modalImg.src = currentImages[currentIndex];
     }
-};
+}
 
 document.querySelector('.close').onclick = function() {
     modal.style.display = "none";
@@ -270,4 +192,6 @@ document.querySelector('.close').onclick = function() {
     document.getElementById('passwordInput').value = "";
 };
 
-window.onclick
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style

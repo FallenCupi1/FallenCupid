@@ -160,13 +160,13 @@
 <div class="main" id="shop">
     <div class="tagline">
         Dark. Thrifted. Unapologetic.<br>
-        Curated clothing for the PEOPLE 🖤
+        Curated clothing for the bold and fearless 🖤
     </div>
 
     <div class="items">
-        <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png,https://via.placeholder.com/300x300.png?text=2">
-            <img src="https://i.postimg.cc/bYRbV3Bb/cf4942d8-a5c3-4278-a233-5128513e0d17.png" alt="FEARLESS T-Shirt">
-            <h3>T-Shirt</h3>
+        <div class="item" data-name="FEARLESS T-Shirt" data-price="$25" data-images="https://via.placeholder.com/300x300.png?text=1,https://via.placeholder.com/300x300.png?text=2">
+            <img src="https://via.placeholder.com/300x300.png?text=1" alt="FEARLESS T-Shirt">
+            <h3> T-Shirt</h3>
             <p>$25</p>
         </div>
 
@@ -217,12 +217,14 @@ let currentItem = null;
 
 document.querySelectorAll('.item').forEach(item => {
     item.addEventListener('click', () => {
-        currentItem = item;
         currentImages = item.getAttribute('data-images').split(',');
         currentIndex = 0;
+        currentItem = item;
+
         modalImg.src = currentImages[currentIndex];
         modalName.textContent = item.getAttribute('data-name');
         modalPrice.textContent = item.getAttribute('data-price');
+
         modal.style.display = "flex";
     });
 });
@@ -259,4 +261,12 @@ function checkPassword() {
     const input = document.getElementById('passwordInput').value;
     if(input === "CLOTHING101") {
         thankYou.style.color = "limegreen";
-       
+        thankYou.textContent = "Thank you for supporting me!";
+    } else {
+        thankYou.style.color = "red";
+        thankYou.textContent = "Incorrect password.";
+    }
+}
+</script>
+</body>
+</html>
